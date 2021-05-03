@@ -21,7 +21,7 @@ describe('Test the functionality of control', async () => {
     await browser.close();
   });
 
-  it('Checks the the invisible checkbox after remove', async () => {
+  it('The checkbox is invisible after removal', async () => {
     await controlPage.clickSwapCheckbox();
     assert.isTrue(await page.isVisible('#checkbox'));
   });

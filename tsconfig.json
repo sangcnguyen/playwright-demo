@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "target": "ES2017",
     "module": "commonjs",
-    "target": "es2016",
-    "jsx": "preserve",
-    "strictFunctionTypes": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "build",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "esModuleInterop": true
   },
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "include": ["src/**/*"]
 }
