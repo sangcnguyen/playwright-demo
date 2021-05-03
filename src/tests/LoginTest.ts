@@ -1,24 +1,29 @@
-import {chromium, Browser, Page} from 'playwright';
+import {chromium, Browser, Page, BrowserContext} from 'playwright';
 import {assert} from 'chai';
 import {LoginPage} from '../pages/LoginPage';
 
-//const BASE_URL = 'https://the-internet.herokuapp.com/';
+let page: Page, browser: Browser, context: BrowserContext, loginPage: LoginPage;
 
 describe('Test the functionality of login', async () => {
-  const browser = await chromium.launch({headless: false});
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  let loginPage = new LoginPage(page);
-
   beforeEach(async () => {
-    loginPage.navigate();
+    browser = await chromium.launch({headless: false});
+    context = await browser.newContext({
+      recordVideo: {
+        dir: './recordings'
+      }
+    });
+    page = await context.newPage();
+    loginPage = new LoginPage(page);
+    await loginPage.navigate();
   });
 
   afterEach(async () => {
     await browser.close();
   });
 
-  it('Checks the title of the page', async () => {
-    loginPage.signIn('tomsmith', 'SuperSecretPassword!');
+  it('Checks the message after login successfully', async () => {
+    await loginPage.signIn('tomsmith', 'SuperSecretPassword!');
+    let actualFlashText = await page.innerText('#flash');
+    assert.equal(actualFlashText.replace('×', ' ').trim(), `You logged into a secure area!`);
   });
 });

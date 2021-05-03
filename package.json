@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha -t 30000 -r ts-node/register src/tests/*.ts"
+    "test": "npx mocha -t 300000 -r ts-node/register src/tests/*.ts"
   },
   "repository": {
     "type": "git",
