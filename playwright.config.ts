@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
 
     // Artifacts
     screenshot: 'only-on-failure',
-    video: 'on-first-retry'
+    video: 'retain-on-failure'
   }
 };
 export default config;
