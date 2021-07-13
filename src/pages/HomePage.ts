@@ -20,5 +20,6 @@ export class HomePage {
     await this.page.click(`//p[.='${gridName}']`, {button: 'right'});
     await this.page.click(`#gridDlBtn`);
     await this.page.click(`//span[.='Delete']`);
+    await this.page.waitForSelector(`//span[.='Delete']`, {state: 'attached'});
   }
 }

@@ -16,13 +16,14 @@ test.describe('feature CRUD grid', () => {
     await page.waitForSelector(`//p[text()='Empty grid']`);
     const visibleGrid = await page.$$(`//p[text()='Empty grid']`);
     expect(visibleGrid.length).toBe(1);
+    await homePage.deleteGrid('Empty grid');
   });
 
   test('verify delete grid', async ({page}) => {
     const homePage = new HomePage(page);
     await homePage.createGridInsideDb('Automation DB', 'Empty grid');
     await homePage.deleteGrid('Empty grid');
-    await page.waitForSelector(`//p[text()='Empty grid']`);
+    //await page.waitForSelector(`//p[text()='Empty grid']`);
     const visibleGrid = await page.$$(`//p[text()='Empty grid']`);
     expect(visibleGrid.length).toBe(0);
   });
