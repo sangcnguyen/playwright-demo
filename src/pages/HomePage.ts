@@ -15,4 +15,10 @@ export class HomePage {
     await this.page.fill(`input[name=projectName]`, gridName);
     await this.page.click(`//span[text()='Create']`);
   }
+
+  async deleteGrid(gridName: string) {
+    await this.page.click(`//p[.='${gridName}']`, {button: 'right'});
+    await this.page.click(`#gridDlBtn`);
+    await this.page.click(`//span[.='Delete']`);
+  }
 }
