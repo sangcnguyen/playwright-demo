@@ -15,6 +15,7 @@ const config: PlaywrightTestConfig = {
     // Artifacts
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'
-  }
+  },
+  reporter: [['html', {open: 'never'}]]
 };
 export default config;

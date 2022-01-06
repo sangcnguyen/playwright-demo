@@ -7,12 +7,12 @@ export class LoginPage {
     this.page = page;
   }
   async goTo() {
-    await this.page.goto(`${process.env.BASE_URL}/signin`);
+    await this.page.goto(`${process.env.BASE_URL}/login`);
   }
 
   async signIn(userName: string, password: string) {
-    await this.page.type(`input[name='username']`, userName);
-    await this.page.type(`input[name='password']`, password);
-    await this.page.click(`button[type='submit']`);
+    await this.page.type(`#username`, userName);
+    await this.page.type(`#password`, password);
+    await this.page.click(`[type='submit'][class='radius']`);
   }
 }
