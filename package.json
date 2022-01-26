@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/sangcnguyen/playwright-demo#readme",
   "dependencies": {
-    "@playwright/test": "^1.17.1",
-    "playwright": "^1.17.1",
+    "@playwright/test": "^1.18.0",
+    "playwright": "^1.18.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
