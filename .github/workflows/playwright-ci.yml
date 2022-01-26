@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04  
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v2
@@ -16,6 +16,8 @@ jobs:
       - name: Install and run test 🔧
         run: |
           npm install
+          npx playwright install-deps
+          npx playwright install
           npm run test
         continue-on-error: true
 
