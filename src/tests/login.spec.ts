@@ -7,5 +7,5 @@ test('verify login', async ({page}) => {
   await loginPage.goTo();
   await loginPage.signIn(process.env.USER, process.env.PASS);
   const actualPageUrl = page.url();
-  expect(actualPageUrl).toContain('/secure');
+  await expect(actualPageUrl).toContain('/secure');
 });
