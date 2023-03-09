@@ -1,11 +1,7 @@
-import {test, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPage';
+import {test, expect} from '../hook/customFixture';
 require('dotenv').config();
 
-test('verify login', async ({page}) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.goTo();
-  await loginPage.signIn(process.env.USER, process.env.PASS);
+test('verify login', async ({page, loginPage}) => {
   const actualPageUrl = page.url();
-  await expect(actualPageUrl).toContain('/secure');
+  expect(actualPageUrl).toContain('/secure');
 });

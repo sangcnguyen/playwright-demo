@@ -4,7 +4,7 @@ const config: PlaywrightTestConfig = {
   testDir: 'src/tests',
   use: {
     // Browser options
-    headless: true,
+    headless: false,
     launchOptions: {
       slowMo: 50
     },
