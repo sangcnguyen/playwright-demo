@@ -1,11 +1,19 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:16.20.1-alpine3.18' 
+    }
+  }
+
   stages {
     stage('Install packages') {
       steps {
-        sh '''printenv
-npm install
-'''
+        echo 'Install packages'
+        sh 
+        '''
+        printenv
+        npm install
+        '''
       }
     }
 
