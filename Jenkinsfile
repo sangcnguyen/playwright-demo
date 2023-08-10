@@ -8,9 +8,7 @@ pipeline {
   stages {
     stage('Install packages') {
       steps {
-        echo 'Install packages'
-        sh 
-        '''
+        sh '''
         printenv
         npm install
         '''
