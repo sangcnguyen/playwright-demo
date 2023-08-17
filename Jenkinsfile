@@ -7,6 +7,7 @@ pipeline {
         sh '''
         printenv
         npm install
+        npx playwright install --with-deps
         '''
       }
     }
