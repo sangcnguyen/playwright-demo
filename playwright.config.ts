@@ -4,18 +4,22 @@ const config: PlaywrightTestConfig = {
   testDir: 'src/tests',
   use: {
     // Browser options
-    headless: true,
+    headless: false,
     launchOptions: {
       slowMo: 100
     },
+    locale: 'en-GB',
     // Context options
     viewport: {width: 1280, height: 720},
     ignoreHTTPSErrors: true,
 
     // Artifacts
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'on'
   },
-  reporter: [['html', {open: 'never'}]]
+  reporter: [
+    ['junit', {outputFile: `junit/results.xml`}],
+    ['html', {outputFolder: `html/`, open: 'never'}]
+  ]
 };
 export default config;

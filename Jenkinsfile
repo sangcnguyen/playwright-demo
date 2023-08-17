@@ -1,25 +1,28 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:16.20.1-alpine3.18' 
-    }
+  agent any
+
+  parameters {
+    booleanParam(name: "BUILD_IMAGE", defaultValue: false)
   }
 
   stages {
-    stage('Install packages') {
+    stage('Build image') {
       steps {
-        sh '''
-        printenv
-        npm install
-        '''
+        when { expression { params.BUILD_IMAGE } }
+        sh 'docker build -t playwright-local .'
       }
     }
-
     stage('Run tests') {
       steps {
-        sh 'npm run test'
+        echo 'npx playwright --version'
+        sh 'npm run ci:test'
       }
     }
-
   }
+
+  post {
+      always {
+        junit 'junit/*.xml'
+      }
+  } 
 }
