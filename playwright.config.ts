@@ -16,6 +16,9 @@ const config: PlaywrightTestConfig = {
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'
   },
-  reporter: [['html', {open: 'never'}]]
+  reporter: [
+    ['junit', {outputFile: `junit/results.xml`}],
+    ['html', {outputFolder: `html/`, open: 'never'}]
+  ]
 };
 export default config;
