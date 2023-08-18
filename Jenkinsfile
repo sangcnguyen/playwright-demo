@@ -1,6 +1,9 @@
 pipeline {
-   agent { docker { image 'mcr.microsoft.com/playwright:v1.37.0-jammy' } }
-
+  agent {
+    docker {
+      image 'mcr.microsoft.com/playwright:v1.37.0-jammy'
+    }
+  }
   stages {
     stage('Install packages') {
       steps {
@@ -10,12 +13,15 @@ pipeline {
         '''
       }
     }
-
     stage('Run tests') {
       steps {
         sh 'npm run test'
       }
     }
-
+  }
+  post {
+      always {
+        junit 'junit/*.xml'
+      }
   }
 }
