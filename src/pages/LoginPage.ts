@@ -11,8 +11,8 @@ export class LoginPage {
   }
 
   async signIn(userName: string, password: string) {
-    await this.page.type(`#username`, userName);
-    await this.page.type(`#password`, password);
+    await this.page.fill(`#username`, userName);
+    await this.page.fill(`#password`, password);
     await this.page.click(`[type='submit'][class='radius']`);
   }
 }

@@ -1,15 +1,16 @@
 pipeline {
   agent {
     docker {
-      image 'mcr.microsoft.com/playwright:v1.37.0-jammy'
+      image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
     }
   }
+  triggers { cron('H 4/* 0 0 1-5') }
   stages {
     stage('Install packages') {
       steps {
         sh '''
         printenv
-        npm ci
+        ci
         '''
       }
     }
