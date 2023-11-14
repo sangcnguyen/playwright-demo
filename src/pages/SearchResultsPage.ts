@@ -1,11 +1,15 @@
 import {Page} from 'playwright';
 import BasePage from './BasePage';
+import {SearchInput} from 'src/components/SearchInput';
 
 export class SearchResultPage extends BasePage {
   readonly page: Page;
+  readonly searchInput: SearchInput;
+
   constructor(rootPage: Page) {
     super(rootPage);
     this.page = rootPage;
+    this.searchInput = new SearchInput(this.page);
   }
 
   async goTo(query: String) {
@@ -16,7 +20,7 @@ export class SearchResultPage extends BasePage {
     return this.page.locator(`//*[@data-async-context='query:${query}']//h3`);
   }
 
-  async clickOnSearchByImage() {
-    await this.page.getByLabel('Search by image').click();
+  async isFindImageSourceButtonVisible() {
+    await this.page.getByText('Find image source').isVisible();
   }
 }
