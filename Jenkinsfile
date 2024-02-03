@@ -6,7 +6,12 @@ pipeline {
   }
 
   stages {
-    stage('Build image') {
+    // stage('Build image') {
+    //   steps {
+    //     sh 'docker build -t playwright-local .'
+    //   }
+    // }
+     stage('Run tests') {
       steps {
         when { expression { params.BUILD_IMAGE } }
         sh 'docker build -t playwright-local .'
