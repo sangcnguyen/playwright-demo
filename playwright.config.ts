@@ -5,7 +5,6 @@ const config: PlaywrightTestConfig = {
   use: {
     // Browser options
     headless: false,
-    channel: 'chrome',
     launchOptions: {
       slowMo: 100
     },
@@ -16,7 +15,7 @@ const config: PlaywrightTestConfig = {
 
     // Artifacts
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'on'
   },
   reporter: [
     ['junit', {outputFile: `junit/results.xml`}],

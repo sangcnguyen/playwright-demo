@@ -1,22 +1,15 @@
 pipeline {
-  agent {
-    docker {
-      image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
-    }
-  }
+  agent any
   triggers { cron('H 4/* 0 0 1-5') }
   stages {
-    stage('Install packages') {
+    stage('Build image') {
       steps {
-        sh '''
-        printenv
-        ci
-        '''
+        sh 'docker build -t playwright-local .'
       }
     }
     stage('Run tests') {
       steps {
-        sh 'npm run test'
+        sh 'docker run -it playwright-local npm run ci:test'
       }
     }
   }
@@ -24,5 +17,5 @@ pipeline {
       always {
         junit 'junit/*.xml'
       }
-  }
+  } 
 }
