@@ -1,14 +1,14 @@
 pipeline {
-  agent any
+  agent { dockerfile true }
   stages {
-    stage('Build image') {
-      steps {
-        sh 'docker build -t playwright-local .'
-      }
-    }
+    // stage('Build image') {
+    //   steps {
+    //     sh 'docker build -t playwright-local .'
+    //   }
+    // }
     stage('Run tests') {
       steps {
-        sh 'docker run -t playwright-local npm run ci:test'
+        sh 'npm run ci:test'
       }
     }
   }
