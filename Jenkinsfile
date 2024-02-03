@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run tests') {
       steps {
-        sh 'docker run -it playwright-local npm run ci:test'
+        sh 'docker run -t playwright-local npm run ci:test'
       }
     }
   }
