@@ -6,8 +6,9 @@ pipeline {
     //     sh 'docker build -t playwright-local .'
     //   }
     // }
-    stage('Run tests') {
+     stage('Run tests') {
       steps {
+        echo 'npx playwright --version'
         sh 'npm run ci:test'
       }
     }
