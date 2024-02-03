@@ -7,8 +7,8 @@ pipeline {
 
   stages {
     stage('Build image') {
-      steps {
-        when { expression { params.BUILD_IMAGE } }
+      when { expression { params.BUILD_IMAGE } }
+      steps {     
         sh 'docker build -t playwright-local .'
       }
     }
