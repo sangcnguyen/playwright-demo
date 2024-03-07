@@ -1,7 +1,7 @@
 pipeline {
   agent any
 
-  enviroment {
+  environment {
     aws_credential = "AWS_CREDENTIAL_ID"
     bucket = "alllure-report"
   }
