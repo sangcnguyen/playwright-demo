@@ -19,7 +19,12 @@ const config: PlaywrightTestConfig = {
   },
   reporter: [
     ['junit', {outputFile: `junit/results.xml`}],
-    ['html', {outputFolder: `html/`, open: 'never'}]
+    [
+      'allure-playwright',
+      {
+        details: false
+      }
+    ]
   ]
 };
 export default config;

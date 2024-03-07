@@ -10,5 +10,5 @@ COPY . /tests
 # Install dependencies
 RUN npm ci
 
-# Install deps
+# Install dependencies for Playwright tests
 RUN npx playwright install --with-deps

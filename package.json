@@ -6,7 +6,9 @@
   "scripts": {
     "install": "npx playwright install",
     "test": "npx playwright test",
-    "ci:test": "xvfb-run npm run test"
+    "ci:test": "xvfb-run npm run test",
+    "report:generate": "npx allure generate --clean",
+    "publish:report": "npm run report:generate -- --single-file"
   },
   "repository": {
     "type": "git",
@@ -20,8 +22,9 @@
   },
   "homepage": "https://github.com/sangcnguyen/playwright-demo#readme",
   "dependencies": {
-    "@playwright/test": "^1.41.1",
-    "playwright": "^1.41.1",
+    "@playwright/test": "^1.42.0",
+    "allure-playwright": "^2.13.0",
+    "playwright": "^1.42.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
