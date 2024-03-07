@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Generate report') {
       steps {
-        sh 'docker run -t playwright-local npm run publish:report"'
+        sh 'docker run -t playwright-local npm run publish:report'
       }
     }
 
