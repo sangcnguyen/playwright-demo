@@ -31,8 +31,6 @@ pipeline {
     stage('Upload to s3') {
       steps {
         withAWS(credentials:"${aws_credential}") {
-          def identity = awsIdentity()
-          echo identity
           s3Upload(file:"allure-report/index.html", bucket:"${bucket}", path:"alllure-report")}
         }
       }
