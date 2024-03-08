@@ -1,30 +1,30 @@
 pipeline {
-  agent any
+  agent { dockerfile true }
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
     bucket = "alllure-report"
   }
 
-  parameters {
-    booleanParam(name: "BUILD_IMAGE", defaultValue: false)
-  }
+  // parameters {
+  //   booleanParam(name: "BUILD_IMAGE", defaultValue: false)
+  // }
 
   stages {
-    stage('Build image') {
-      when { expression { params.BUILD_IMAGE } }
-      steps {     
-        sh 'docker build -t playwright-local .'
-      }
-    }
+    // stage('Build image') {
+    //   when { expression { params.BUILD_IMAGE } }
+    //   steps {     
+    //     sh 'docker build -t playwright-local .'
+    //   }
+    // }
     stage('Run tests') {
       steps {
-        sh 'docker run -t playwright-local npm run ci:test'
+        sh 'npm run ci:test'
       }
     }
     stage('Generate report') {
       steps {
-        sh 'docker run -t playwright-local npm run publish:report'
+        sh 'npm run publish:report'
       }
     }
 
