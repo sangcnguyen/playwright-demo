@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "install": "npx playwright install",
     "test": "npx playwright test",
     "ci:test": "xvfb-run npm run test",
     "report:generate": "npx allure generate --clean",

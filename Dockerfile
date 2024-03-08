@@ -15,6 +15,3 @@ RUN apt-get update && \
 
 # Install dependencies
 RUN npm ci
-
-# Install dependencies for Playwright tests
-RUN npx playwright install --with-deps
