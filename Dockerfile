@@ -5,7 +5,10 @@ FROM mcr.microsoft.com/playwright:v1.42.1-jammy
 WORKDIR /tests
 
 # Copy the rest of the application files
-COPY . /tests
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
 
 # Install java
 RUN apt-get update && \
@@ -13,5 +16,4 @@ RUN apt-get update && \
     apt-get install -y ant && \
     apt-get clean;
 
-# Install dependencies
-RUN npm ci
+COPY . .
