@@ -1,5 +1,9 @@
 pipeline {
-  agent { dockerfile true }
+  agent {
+    docker{
+      image 'mcr.microsoft.com/playwright:v1.42.1-jammy'
+    }
+  }
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
@@ -17,6 +21,11 @@ pipeline {
     //     sh 'docker build -t playwright-local .'
     //   }
     // }
+    stage('Install deps') {
+      steps {
+        sh 'npm ci'
+      }
+    }
     stage('Run tests') {
       steps {
         sh 'npm run ci:test'
