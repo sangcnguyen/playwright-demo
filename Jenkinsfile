@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker{
-      image 'mcr.microsoft.com/playwright:v1.42.1-jammy'
-    }
-  }
+  agent none
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
@@ -22,16 +18,23 @@ pipeline {
     //   }
     // }
     stage('Install deps') {
+      agent {
+        docker{
+          image 'mcr.microsoft.com/playwright:v1.42.1-jammy'
+        }
+      }
       steps {
         sh 'npm ci'
-      }
-    }
-    stage('Run tests') {
-      steps {
         sh 'npm run ci:test'
       }
     }
+    
     stage('Generate report') {
+      agent {
+        docker{
+          image 'eclipse-temurin:21-alpine'
+        }
+      }
       steps {
         sh 'npm run publish:report'
       }
