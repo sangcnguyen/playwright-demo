@@ -1,7 +1,6 @@
 pipeline {
   agent { 
-    dockerfile true 
-    args '-t playwright-local'
+    dockerfile true
   }
 
   environment {
