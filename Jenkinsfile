@@ -1,5 +1,8 @@
 pipeline {
-  agent { dockerfile true }
+  agent { 
+    dockerfile true 
+    args '-t playwright-local'
+  }
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
