@@ -4,7 +4,6 @@ FROM mcr.microsoft.com/playwright:v1.42.1-jammy
 # Set the working directory
 WORKDIR /tests
 
-# Copy the rest of the application files
 COPY package*.json ./
 
 # Install dependencies
@@ -16,4 +15,5 @@ RUN apt-get update && \
     apt-get install -y ant && \
     apt-get clean;
 
+# Copy the rest of the application files
 COPY . .

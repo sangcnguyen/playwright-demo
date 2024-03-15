@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent { dockerfile true }
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
@@ -17,24 +17,12 @@ pipeline {
     //     sh 'docker build -t playwright-local .'
     //   }
     // }
-    stage('Install deps') {
-      agent {
-        docker{
-          image 'mcr.microsoft.com/playwright:v1.42.1-jammy'
-        }
-      }
+    stage('Run tests') {
       steps {
-        sh 'npm ci'
         sh 'npm run ci:test'
       }
     }
-    
     stage('Generate report') {
-      agent {
-        docker{
-          image 'eclipse-temurin:21-alpine'
-        }
-      }
       steps {
         sh 'npm run publish:report'
       }
