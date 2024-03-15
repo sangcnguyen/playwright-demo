@@ -30,8 +30,8 @@ pipeline {
 
     stage('Upload to s3') {
       steps {
-        withAWS(region:'ap-southeast-1',credentials:'${aws_credential}') {
-          s3Upload(file:'allure-report/index.html', bucket:'${bucket}', path:'alllure-report')}
+        withAWS(region:'ap-southeast-1',credentials:"${aws_credential}") {
+          s3Upload(file:'allure-report/index.html', bucket:"${bucket}", path:'alllure-report')}
         }
       }
     }
