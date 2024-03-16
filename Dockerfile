@@ -7,7 +7,7 @@ WORKDIR /tests
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci && npm cache clean --force
+RUN npm ci
 
 # Install java
 RUN apt-get update && \

@@ -21,6 +21,7 @@ pipeline {
     // }
     stage('Run tests') {
       steps {
+        sh 'ls'
         sh 'npm run ci:test'
       }
     }
