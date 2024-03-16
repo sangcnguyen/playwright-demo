@@ -1,4 +1,4 @@
-import {Page} from 'playwright';
+import {type Page} from '@playwright/test';
 import BasePage from './BasePage';
 import {SearchInput} from 'src/components/SearchInput';
 

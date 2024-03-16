@@ -1,4 +1,4 @@
-import {Page} from 'playwright';
+import {type Page} from '@playwright/test';
 
 export default abstract class BasePage {
   readonly rootPage: Page;
