@@ -30,7 +30,9 @@ pipeline {
     }
     stage('Run tests') {
       steps {
-        sh 'npm run ci:test'
+        catchError {
+          sh 'npm run ci:test'
+        }       
       }
     }
     stage('Generate report') {
