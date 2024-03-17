@@ -21,7 +21,6 @@ pipeline {
     //   }
     // }
     stage('Install deps') {
-      when { expression { params.BUILD_IMAGE } }
       steps {     
         sh 'npm ci'
       }
