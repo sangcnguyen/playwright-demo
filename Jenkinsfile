@@ -35,7 +35,7 @@ pipeline {
     }
     stage('Generate report') {
       steps {
-        sh 'run publish:report'
+        sh 'npm run publish:report'
       }
     }
 
