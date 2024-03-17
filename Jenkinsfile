@@ -22,7 +22,10 @@ pipeline {
     // }
     stage('Install deps') {
       steps {     
-        sh 'npm ci'
+        sh '''
+          npm ci 
+          npx playwright install
+        '''
       }
     }
     stage('Run tests') {
