@@ -1,7 +1,8 @@
 pipeline {
-  agent { 
-    dockerfile true
-  }
+  agent any
+  // agent { 
+  //   dockerfile true
+  // }
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
@@ -19,15 +20,20 @@ pipeline {
     //     sh 'docker build -t playwright-local .'
     //   }
     // }
+    stage('Install deps') {
+      when { expression { params.BUILD_IMAGE } }
+      steps {     
+        sh 'npm ci'
+      }
+    }
     stage('Run tests') {
       steps {
-        sh 'ls'
         sh 'npm run ci:test'
       }
     }
     stage('Generate report') {
       steps {
-        sh 'npm run publish:report'
+        sh 'run publish:report'
       }
     }
 
