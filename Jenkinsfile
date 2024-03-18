@@ -30,19 +30,17 @@ pipeline {
     }
     stage('Run tests') {
       steps {
-        catchError {
+        catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
           sh 'npm run ci:test'
-        }       
+        }
       }
     }
     stage('Copy history into allure-results') {
       steps {
-        catchError {
-          sh '''
-            npm run generate:history
-            cp -r allure-report/history allure-results
-          '''
-        }       
+        sh '''
+          npm run generate:history
+          cp -r allure-report/history allure-results
+        '''     
       }
     }
     stage('Generate single report') {
@@ -60,7 +58,7 @@ pipeline {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
           sh 'rm -f allure-results/*'
-        }       
+        }
       }
     }
   }
