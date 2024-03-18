@@ -35,12 +35,23 @@ pipeline {
         }       
       }
     }
-    stage('Generate report') {
+    stage('Copy history into allure-results') {
       steps {
-        sh 'npm run publish:report'
+        catchError {
+          sh '''
+            npm run generate:history
+            cp -r allure-report/history allure-results
+          '''
+        }       
       }
     }
-
+    stage('Generate single report') {
+      steps {
+        sh '''
+          npm run generate:report
+        '''
+      }
+    }
     stage('Upload to s3') {
       steps {
         withAWS(region:'ap-southeast-1',credentials:"${aws_credential}") {
@@ -52,6 +63,9 @@ pipeline {
 
   post {
     always {
-      junit 'junit/*.xml'
-  }
+      sh '''
+        echo 'Removing all files under allure-results directory'
+        rm -f allure-results/*
+      '''
+    }
 } 

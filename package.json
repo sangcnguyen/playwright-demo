@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
-    "headed:test": "npm run test -- --headed",
-    "ci:test": "npm run test",
-    "report:generate": "npx allure generate --clean",
-    "publish:report": "npm run report:generate -- --single-file"
+    "headed:test": "npx playwright test --headed",
+    "ci:test": "npx playwright test",
+    "generate:history": "npx allure generate --clean",
+    "generate:report": "npm run generate:history -- --single-file"
   },
   "repository": {
     "type": "git",
