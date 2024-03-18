@@ -17,7 +17,6 @@ const config: PlaywrightTestConfig = {
     video: 'on'
   },
   reporter: [
-    ['junit', {outputFile: `junit/results.xml`}],
     [
       'allure-playwright',
       {

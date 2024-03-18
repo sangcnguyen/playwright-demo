@@ -6,7 +6,7 @@ pipeline {
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
-    bucket = "alllure-report"
+    bucket = "index"
   }
 
   // parameters {
