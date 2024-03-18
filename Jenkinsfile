@@ -6,7 +6,7 @@ pipeline {
 
   environment {
     aws_credential = "AWS_CREDENTIAL_ID"
-    bucket = "index"
+    bucket = "alllure-report"
   }
 
   // parameters {
@@ -53,7 +53,7 @@ pipeline {
     stage('Upload to s3') {
       steps {
         withAWS(region:'ap-southeast-1',credentials:"${aws_credential}") {
-          s3Upload(file:'allure-report/index.html', bucket:"${bucket}", path:'alllure-report')}
+          s3Upload(file:'allure-report/index.html', bucket:"${bucket}", path:'index.html')}
         }
     }
     stage('Remove all files under allure-results') {
