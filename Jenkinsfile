@@ -59,7 +59,6 @@ pipeline {
         }
       }
     }
-  }
 
   post {
     always {
@@ -68,4 +67,5 @@ pipeline {
         rm -f allure-results/*
       '''
     }
-} 
+  }
+}
