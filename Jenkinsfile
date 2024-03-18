@@ -47,9 +47,7 @@ pipeline {
     }
     stage('Generate single report') {
       steps {
-        sh '''
-          npm run generate:report
-        '''
+        sh 'npm run generate:report'
       }
     }
     stage('Upload to s3') {
@@ -57,15 +55,13 @@ pipeline {
         withAWS(region:'ap-southeast-1',credentials:"${aws_credential}") {
           s3Upload(file:'allure-report/index.html', bucket:"${bucket}", path:'alllure-report')}
         }
-      }
     }
-
-  post {
-    always {
-      sh '''
-        echo 'Removing all files under allure-results directory'
-        rm -f allure-results/*
-      '''
+    stage('Remove all files under allure-results') {
+      steps {
+        catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+          sh 'rm -f allure-results/*'
+        }       
+      }
     }
   }
 }
