@@ -1,6 +1,6 @@
-import {type Page} from '@playwright/test';
-import BasePage from './BasePage';
+import {expect, type Page} from '@playwright/test';
 import {SearchInput} from 'src/components/SearchInput';
+import BasePage from './BasePage';
 
 export class SearchResultPage extends BasePage {
   readonly page: Page;
@@ -16,11 +16,14 @@ export class SearchResultPage extends BasePage {
     await this.page.goto(`${process.env.BASE_URL}/search?q=${query}`);
   }
 
-  async getQueryResults(query: string) {
-    return this.page.locator(`//*[@data-async-context='query:${query}']//h3`);
+  getQueryResults = (query: string) => this.page.locator(`//*[@data-async-context='query:${query}']//h3`);
+
+  async verifyImageSourceButtonVisible() {
+    await this.page.getByText('Find image source').isVisible();
   }
 
-  async isFindImageSourceButtonVisible() {
-    await this.page.getByText('Find image source').isVisible();
+  async verifyResultToContainText(query: string) {
+    const allValues = await this.getQueryResults(query).allTextContents();
+    expect.soft(allValues[0]).toContain(query);
   }
 }

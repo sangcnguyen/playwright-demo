@@ -9,12 +9,15 @@ const config: PlaywrightTestConfig = {
     },
     locale: 'en-GB',
     // Context options
-    viewport: {width: 1280, height: 720},
+    viewport: {width: 1680, height: 1050},
     ignoreHTTPSErrors: true,
 
     // Artifacts
     screenshot: 'only-on-failure',
-    video: 'on'
+    video: {
+      mode: 'on',
+      size: {width: 1680, height: 1050}
+    }
   },
   reporter: [
     [

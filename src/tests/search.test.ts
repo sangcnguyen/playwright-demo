@@ -1,21 +1,18 @@
-import test, {expect} from 'playwright/test';
-import {HomePage} from 'src/pages/HomePage';
-import {SearchResultPage} from 'src/pages/SearchResultsPage';
+import {test} from 'src/core/BaseTest';
+
 require('dotenv').config();
 
-test('Suggested list should be appeared', async ({page}) => {
-  const homePage = new HomePage(page);
-  await homePage.goTo();
-  await homePage.queryContent('Tesla');
-  expect.soft(homePage.searchInput.isListBoxVisible()).toBeTruthy();
-  expect.soft(await homePage.searchInput.getAllTextItems()).toContain('Tesla');
+test('Suggested list should be appeared', async ({homePage}) => {
+  const stringContent = 'Tesla';
+  await homePage.queryContent(stringContent);
+  await homePage.verifyBoxToHaveText(stringContent);
 });
 
-test('Search results via image should be appeared', async ({page}) => {
-  const query = 'Playwright';
-  const searchResultsPage = new SearchResultPage(page);
-  await searchResultsPage.goTo(query);
-  await expect.soft((await searchResultsPage.getQueryResults(query)).first()).toContainText(query);
-  await searchResultsPage.searchInput.clickOnSearchByImage('src/fixtures/playwright-logo.png');
-  expect(searchResultsPage.isFindImageSourceButtonVisible()).toBeTruthy();
+test('Search results via image should be appeared', async ({searchResultPage}) => {
+  const stringContent = 'Playwright';
+
+  await searchResultPage.goTo(stringContent);
+  await searchResultPage.verifyResultToContainText(stringContent);
+  await searchResultPage.searchInput.clickOnSearchByImage('src/fixtures/playwright-logo.png');
+  await searchResultPage.verifyImageSourceButtonVisible();
 });

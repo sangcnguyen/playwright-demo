@@ -21,12 +21,15 @@
   },
   "homepage": "https://github.com/sangcnguyen/playwright-demo#readme",
   "dependencies": {
-    "allure-commandline": "^2.27.0",
-    "allure-playwright": "^2.14.1",
-    "typescript": "^5.4.2"
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^2.15.1",
+    "playwright": "^1.46.0",
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.42.1",
-    "dotenv": "^16.4.5"
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^22.1.0",
+    "dotenv": "^16.4.5",
+    "mouse-helper": "^1.0.7"
   }
 }

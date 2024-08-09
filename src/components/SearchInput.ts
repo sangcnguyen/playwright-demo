@@ -7,16 +7,16 @@ export class SearchInput {
     this.page = page;
   }
 
-  async getAllTextItems() {
-    return await this.page.locator('//div[@aria-description]/div[1]/span').allTextContents();
-  }
+  searchInputLocator = () => this.page.locator(`textarea[name='q']`);
+
+  allItemsLocator = () => this.page.locator('//div[@aria-description]/div[1]/span');
 
   async clickOnSearchByImage(srcImg: string) {
     await this.page.getByLabel('Search by image').click();
     await this.page.locator(`//input[@name="encoded_image"]`).setInputFiles(srcImg);
   }
 
-  async isListBoxVisible() {
+  async verifyListBoxVisible() {
     await this.page.getByRole('listbox').isVisible();
   }
 }
