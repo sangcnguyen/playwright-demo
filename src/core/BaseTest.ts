@@ -1,7 +1,7 @@
 import {test as baseTest} from '@playwright/test';
 import {HomePage} from 'src/pages/HomePage';
 import {SearchResultPage} from 'src/pages/SearchResultsPage';
-import {createMoveIndicator} from './MouseHelper';
+import {createMoveIndicator} from './mouseHelper';
 
 type pages = {
   homePage: HomePage;
@@ -13,12 +13,12 @@ export const test = baseTest.extend<pages>({
     await createMoveIndicator(page);
     const homePage = new HomePage(page);
     await homePage.goTo();
-    use(new HomePage(page));
+    await use(new HomePage(page));
   },
 
   searchResultPage: async ({page}, use) => {
     await createMoveIndicator(page);
-    use(new SearchResultPage(page));
+    await use(new SearchResultPage(page));
   }
 });
 export {expect} from '@playwright/test';

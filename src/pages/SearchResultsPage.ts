@@ -12,7 +12,7 @@ export class SearchResultPage extends BasePage {
     this.searchInput = new SearchInput(this.page);
   }
 
-  async goTo(query: String) {
+  async goTo(query: string) {
     await this.page.goto(`${process.env.BASE_URL}/search?q=${query}`);
   }
 

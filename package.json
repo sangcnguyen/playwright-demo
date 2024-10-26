@@ -3,11 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "lint": "eslint src",
+    "format": "prettier src --write",
     "headed:test": "npx playwright test --headed",
     "ci:test": "npx playwright test",
     "generate:history": "npx allure generate --clean",
     "generate:report": "npm run generate:history -- --single-file"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run format"
+    ]
   },
   "repository": {
     "type": "git",
@@ -21,15 +30,21 @@
   },
   "homepage": "https://github.com/sangcnguyen/playwright-demo#readme",
   "dependencies": {
-    "allure-commandline": "^2.30.0",
-    "allure-playwright": "^2.15.1",
-    "playwright": "^1.46.0",
-    "typescript": "^5.5.4"
+    "playwright": "^1.48.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.46.0",
-    "@types/node": "^22.1.0",
+    "@playwright/test": "^1.48.1",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "allure-commandline": "^2.31.0",
+    "allure-playwright": "^3.0.5",
     "dotenv": "^16.4.5",
-    "mouse-helper": "^1.0.7"
+    "eslint": "^9.13.0",
+    "eslint-plugin-playwright": "^2.0.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "playwright-slack-report": "^1.1.88",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.11.0"
   }
 }
